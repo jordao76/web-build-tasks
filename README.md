@@ -11,11 +11,11 @@ This package was created to ease the build process of some simple static web app
 
 ## Usage
 
-TODO
+_TODO_
 
 ## API
 
-TODO
+_TODO_
 
 ## License
 
