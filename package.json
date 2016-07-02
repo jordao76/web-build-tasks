@@ -1,6 +1,6 @@
 {
   "name": "web-build-tasks",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Helper gulp tasks for a limited web build",
   "main": "lib/web-build-tasks.js",
   "directories": {
@@ -36,7 +36,7 @@
     "gulp-gh-pages": "^0.5.4",
     "gulp-htmlmin": "^2.0.0",
     "gulp-if": "^2.0.1",
-    "gulp-jade": "^1.1.0",
+    "gulp-pug": "^3.0.3",
     "gulp-livereload": "^3.8.1",
     "gulp-load-plugins": "^1.2.4",
     "gulp-mocha": "^2.2.0",

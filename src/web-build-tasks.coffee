@@ -57,12 +57,12 @@ defineTasks = (gulp, options = {}) ->
         .pipe $.sourcemaps.write './'
         .pipe gulp.dest "#{destPath}#{scriptPath}"
 
-  gulp.task 'jade', ->
-    gulp.src "#{srcPath}/**/*.jade"
-      .pipe $.jade pretty: yes
+  gulp.task 'pug', ->
+    gulp.src "#{srcPath}/**/*.pug"
+      .pipe $.pug pretty: yes
       .pipe gulp.dest '.tmp'
 
-  gulp.task 'html', ['jade'], ->
+  gulp.task 'html', ['pug'], ->
     gulp.src ["#{srcPath}/**/*.html", '.tmp/**/*.html']
       .pipe $.useref searchPath: srcPath
       .pipe $.if '*.css', $.csso()
@@ -103,7 +103,7 @@ defineTasks = (gulp, options = {}) ->
 
   gulp.task 'watch', ['connect'], ->
     gulp.watch ["#{srcPath}/**/*.coffee"], ['scripts']
-    gulp.watch ["#{srcPath}/**/*.html", "#{srcPath}/**/*.jade", "#{srcPath}/**/*.css"], ['html']
+    gulp.watch ["#{srcPath}/**/*.html", "#{srcPath}/**/*.pug", "#{srcPath}/**/*.css"], ['html']
 
     $.livereload.listen()
     gulp.watch ["#{destPath}/**/*.html", "#{destPath}/**/*.css", "#{destPath}/**/*.js"]
