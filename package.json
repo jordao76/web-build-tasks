@@ -1,6 +1,6 @@
 {
   "name": "web-build-tasks",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Helper gulp tasks for a limited web build",
   "main": "lib/web-build-tasks.js",
   "directories": {
