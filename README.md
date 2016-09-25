@@ -63,7 +63,7 @@ These are the __main build__ gulp tasks provided:
 * `html`, depends on `pug`: optimizes CSS files and minifies HTML files.
 * `copy`: copies all `options.copyGlob` files to `options.destPath`.
 * `clean`: deletes all generated folders.
-* `build`, tuns tasks `clean`, `scripts` and `html`, this is also the __default__ gulp task.
+* `build`, tuns tasks `clean`, `scripts`, `html` and `copy`, this is also the __default__ gulp task.
 
 The ones more applicable to be run manually are `lint`, `test`, `clean` and the default (same as `build`):
 
