@@ -15,7 +15,7 @@ describe 'Web build tasks smoke tests', ->
     gulpMock = new GulpMock
     webBuildTasks.define gulpMock
     expectedTasks = [
-      'lint','test','scripts','pug','html','clean','build','default'
+      'lint','test','scripts','pug','html','copy','clean','build','default'
       'perf'
       'connect','watch','serve'
       'cdnize','deploy'

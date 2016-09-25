@@ -35,6 +35,7 @@ Defines all `web-build-tasks` gulp tasks using `gulp` and the given `options` ob
 * `testPath = './test'`: path for the test coffeescript files
 * `perfGlob = "#{testPath}/**/perf*.coffee"`: glob for the performance test coffeescript files
 * `coffeeGlobs = ['./gulpfile.coffee', "#{srcPath}#{scriptPath}/**/*.coffee", "#{testPath}/**/*.coffee"]`: array of globs for coffeescript files
+* `copyGlob = "#{srcPath}/**/*.!(coffee|pug|html|css)"`: glob for files to be copied verbatim to `destPath`.
 * `rootGlobs = ["#{srcPath}#{scriptPath}/main*.coffee"]`: globs for the root coffeescript files of the application
 * `cdnEntries = []`: array of options for the `cdnize` task (see below)
 
@@ -60,7 +61,8 @@ These are the __main build__ gulp tasks provided:
 * `scripts`, depends on `test`: runs `browserify` on all files from `options.rootGlobs`, uglifying with source maps.
 * `pug`: runs `gulp-pug` on all pug files found on `options.srcPath`. Writes the results to a temporary folder `.tmp`.
 * `html`, depends on `pug`: optimizes CSS files and minifies HTML files.
-* `clean`: deletes all generated folders
+* `copy`: copies all `options.copyGlob` files to `options.destPath`.
+* `clean`: deletes all generated folders.
 * `build`, tuns tasks `clean`, `scripts` and `html`, this is also the __default__ gulp task.
 
 The ones more applicable to be run manually are `lint`, `test`, `clean` and the default (same as `build`):

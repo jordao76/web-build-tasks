@@ -10,6 +10,7 @@ defineTasks = (gulp, options = {}) ->
   testPath = options.testPath ? './test'
   perfGlob = options.perfGlob ? "#{testPath}/**/perf*.coffee"
   coffeeGlobs = options.coffeeGlobs ? ['./gulpfile.coffee', "#{srcPath}#{scriptPath}/**/*.coffee", "#{testPath}/**/*.coffee"]
+  copyGlob = options.copyGlob ? "#{srcPath}/**/*.!(coffee|pug|html|css)"
   rootGlobs = options.rootGlobs ? ["#{srcPath}#{scriptPath}/main*.coffee"]
   cdnEntries = options.cdnEntries ? []
 
@@ -69,12 +70,16 @@ defineTasks = (gulp, options = {}) ->
       .pipe $.if '*.html', $.htmlmin collapseWhitespace: true
       .pipe gulp.dest destPath
 
+  gulp.task 'copy', ->
+    gulp.src copyGlob
+      .pipe gulp.dest destPath
+
   gulp.task 'clean',
     require 'del'
       .bind null, [destPath, '.tmp', '.publish']
 
   gulp.task 'build', (done) ->
-    run 'clean', ['scripts', 'html'], done
+    run 'clean', ['scripts', 'html', 'copy'], done
 
   gulp.task 'default', ['build']
 
@@ -104,9 +109,10 @@ defineTasks = (gulp, options = {}) ->
   gulp.task 'watch', ['connect'], ->
     gulp.watch ["#{srcPath}/**/*.coffee"], ['scripts']
     gulp.watch ["#{srcPath}/**/*.html", "#{srcPath}/**/*.pug", "#{srcPath}/**/*.css"], ['html']
+    gulp.watch [copyGlob], ['copy']
 
     $.livereload.listen()
-    gulp.watch ["#{destPath}/**/*.html", "#{destPath}/**/*.css", "#{destPath}/**/*.js"]
+    gulp.watch ["#{destPath}/**/*"]
       .on 'change', $.livereload.changed
 
   gulp.task 'serve', ['watch'], ->
